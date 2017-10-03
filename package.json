@@ -1,0 +1,19 @@
+{
+  "name": "floor",
+  "version": "0.1.0",
+  "description": "Some interface for interactive floor",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.7.8"
+  }
+}
