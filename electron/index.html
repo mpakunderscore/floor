@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Floor</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="index.css">
+
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+
+    </head>
+
+<body>
+
+    <div id="column">
+
+        <div id="header">
+            <span>
+                Wrong: <span id="wrong">0</span>
+            </span>
+            <span>
+                Correct: <span id="correct">0</span>
+            </span>
+        </div>
+
+        <div id="floor"></div>
+
+        <div id="menu">
+            <p>Click on the cell to change state</p>
+            <span onclick="htmlMap()">Reset</span>
+            <span onclick="save()">Save</span>
+            <span onclick="load()">Load</span>
+            <span onclick="test()">Test</span>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+<script src="index.js"></script>
+
+</html>

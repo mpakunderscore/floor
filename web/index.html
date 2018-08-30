@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Floor</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+
+        <link rel="shortcut icon"
+              type="image/x-icon"
+              href="images/web_hi_res_512.png">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="css/index.css?v2">
+        <link rel="stylesheet" type="text/css" href="css/media.css?v2">
+
+        <script src="./js/jquery-3.3.1.min.js"></script>
+        <!--<script src="./js/utils/socket.io.slim.js"></script>-->
+        <!--<script src="js/utils/ga.js"></script>-->
+
+    </head>
+
+    <body>
+
+        <main class="column">
+
+            <div id="floor"></div>
+
+            <div id="menu" class="column">
+
+                <div class="menu">
+                    <span onclick="up()">Поднять</span>
+                    <span onclick="down()">Опустить</span>
+                </div>
+
+                <div class="menu">
+                    <span onclick="start()">Старт</span>
+                    <span onclick="stop()">Стоп</span>
+                    <span>Сирена</span>
+                </div>
+
+                <div class="menu">
+                    <span onclick="htmlMap()">Сброс</span>
+                    <span onclick="save()">Сохранить</span>
+                    <span onclick="load()">Загрузить</span>
+                </div>
+
+                <div class="menu">
+                    <span>Победила</span>
+                    <span onclick="save()">[1]</span>
+                    <span onclick="save()">[2]</span>
+                    <span onclick="save()">[3]</span>
+                    <span onclick="save()">[4]</span>
+                </div>
+
+            </div>
+        </main>
+
+    </body>
+
+    <script src="js/index.js?v2"></script>
+
+</html>
