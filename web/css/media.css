@@ -10,3 +10,16 @@
         width: 80%;
     }
 }
+
+@media screen and (orientation:landscape) {
+    .rowCell {
+        width: 100%;
+    }
+    #floor {
+        max-width: 320px;
+    }
+    main.column {
+        flex-direction: row;
+        width: 100%;
+    }
+}
