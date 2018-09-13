@@ -16,8 +16,9 @@ server.listen(port);
 
 app.get('/message', function (request, response) {
 
-    let message = request.query.text;
-    console.log(message);
+    let message = request;
+    console.log("REQUEST");
+    console.log(request);
 
     response.json({});
 });
