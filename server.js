@@ -1,23 +1,35 @@
 //SERVER
+let state = {0: [0, 0]};
 
+//HTTP
 let express = require('express');
 let path = require('path');
-
 let app = express();
-
-//STATIC WEB
 app.use(express.static(path.join(__dirname, 'web')));
 
 let server = require('http').Server(app);
-
 const port = process.env.PORT || 8080;
 
-server.listen(port);
+//WEB SOCKET
+let io = require('socket.io')(server);
 
+server.listen(port, () => console.log('socket listening on: ' + port));
 
+io.on('connection', (socket) => {
+
+    console.log('connect: ' + socket.id);
+
+    // console.log(map);
+
+    socket.emit('state', JSON.stringify(state));
+    //
+    // socket.on('sound', (message) => receiveSound(socket, message));
+
+    // socket.on('disconnect', () => removeUser(socket));
+});
+
+//TCP SOCKET
 let net = require('net');
-
-let state = {};
 
 let tcpServer = net.createServer(function(socket) {
 
@@ -34,7 +46,8 @@ let tcpServer = net.createServer(function(socket) {
 
             if (side >= 100 && side <= 110) {
                 state[side] = array.slice(0, 12);
-                console.log(state);
+                // console.log(state);
+                io.sockets.emit('state', JSON.stringify(state));
             }
         }
 
