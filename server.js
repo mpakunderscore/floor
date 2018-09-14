@@ -31,13 +31,13 @@ io.on('connection', (socket) => {
 //TCP SOCKET
 let net = require('net');
 
-let tcpServer = net.createServer(function(socket) {
+let tcpServer = net.createServer(function(tcpSocket) {
 
     console.log('Connected');
 
-    socket.pipe(socket);
+    tcpSocket.pipe(tcpSocket);
 
-    socket.on('data', function (data) {
+    tcpSocket.on('data', function (data) {
 
         let array = JSON.parse(JSON.stringify(data)).data;
         if (array.length >= 13) {
@@ -51,14 +51,14 @@ let tcpServer = net.createServer(function(socket) {
             }
         }
 
-        socket.write('A');
+        tcpSocket.write('A');
     });
 
-    socket.on('error', function (error) {
+    tcpSocket.on('error', function (error) {
         console.log(error);
     });
 
-    socket.write('Echo server');
+    tcpSocket.write('Echo server');
 });
 
 tcpServer.listen(6060);
