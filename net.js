@@ -3,9 +3,14 @@ let net = require('net');
 let server = net.createServer(function(socket) {
 
     console.log('Connected');
+
     socket.pipe(socket);
     socket.on('data', function (data) {
-        console.log(JSON.stringify(data));
+
+        let array = JSON.parse(JSON.stringify(data)).data;
+        let side = array[0];
+
+
         socket.write('A');
     });
     socket.on('error', function (error) {
