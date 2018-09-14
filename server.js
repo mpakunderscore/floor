@@ -31,6 +31,12 @@ io.on('connection', (socket) => {
 //TCP SOCKET
 let net = require('net');
 
+setInterval(function(){
+
+    io.sockets.emit('state', JSON.stringify(state));
+
+}, 1000);
+
 let tcpServer = net.createServer(function(tcpSocket) {
 
     console.log('Connected');
@@ -49,7 +55,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
                 state[side] = array.slice(0, 12);
                 console.log(state);
 
-                io.emit('state', JSON.stringify(state));
+                io.sockets.emit('state', JSON.stringify(state));
             }
         }
 
