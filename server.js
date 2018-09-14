@@ -45,9 +45,11 @@ let tcpServer = net.createServer(function(tcpSocket) {
             let side = array.shift();
 
             if (side >= 100 && side <= 110) {
+
                 state[side] = array.slice(0, 12);
                 console.log(state);
-                io.sockets.emit('state', JSON.stringify(state));
+
+                io.emit('state', JSON.stringify(state));
             }
         }
 
