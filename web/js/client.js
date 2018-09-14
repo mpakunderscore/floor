@@ -1,7 +1,7 @@
 const port = 8080;
 const ip = 'localhost:' + port;
 
-let socket = io(window.location.hostname, {secure: false});
+let socket = io(ip, {secure: false});
 // let socket = io(window.location.hostname, {secure: true});
 
 // socket.on('connect', function(){});
