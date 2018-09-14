@@ -90,7 +90,7 @@ main {
 
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
 
-    background-color: #47a7f9;
+    background-color: #41e041;
 
     /*display: flex;*/
     /*flex-direction: column;*/
@@ -112,16 +112,16 @@ main {
 }
 
 .signal.red {
-    box-shadow: 0 2px 3px rgba(239, 0, 0, 0.5);
-    background-color: rgba(254, 0, 0, 0.86);
+    box-shadow: 0 2px 3px rgba(28, 68, 239, 0.5);
+    background-color: rgba(25, 32, 254, 0.86);
 }
 
 .cell:hover {
-    background-color: rgba(64, 231, 52, 0.35);
+    background-color: rgba(231, 30, 39, 0.35);
 }
 
 .cell.check {
-    background-color: rgba(32, 255, 99, 0.78);
+    background-color: rgba(255, 7, 5, 0.7);
 }
 
 .cell.none {
@@ -173,7 +173,7 @@ main {
 }
 
 .menu div {
-    cursor: pointer;
+
     padding: 10px;
     margin: 5px;
     background-color: white;
@@ -181,10 +181,27 @@ main {
 
     min-width: 24px;
     border-radius: 5px;
-
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.menu span:hover {
-    color: red;
+.menu div.button {
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+
+    transition: box-shadow 0.3s;
+}
+
+.menu div.button:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.menu div.button:active {
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.menu div.button.disabled {
+    cursor: not-allowed;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0.1;
 }
