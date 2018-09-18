@@ -22,7 +22,7 @@ body {
     flex-direction: column;
     align-items: center;
 
-    background-color: ghostwhite;
+    background-color: #d5d5db;
 
     /*background-color: lightcoral;*/
 
@@ -57,7 +57,7 @@ main {
     max-width: 800px;
     /*max-height: 80%;*/
 
-    padding: 20px;
+    /*padding: 10px;*/
     /*padding-top: 2%;*/
     /*padding-bottom: 2%;*/
 
@@ -68,6 +68,46 @@ main {
     /*background-color: darkcyan;*/
 
     cursor: pointer;
+}
+
+#floor {
+    border-top: solid white 3px;
+    border-right: solid #3a7eff 3px;
+    border-bottom: solid black 3px;
+    border-left: solid red 3px;
+}
+
+#siren {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#siren div {
+    width: 25%;
+    height: 100%;
+}
+
+#siren div.white {
+    background-color: white;
+}
+
+#siren div.blue {
+    background-color: #3a7eff;
+}
+
+#siren div.black {
+    background-color: black;
+}
+
+#siren div.red {
+    background-color: red;
+}
+
+#siren div:hover {
+    opacity: 0.6;
 }
 
 /*#floor:hover {*/

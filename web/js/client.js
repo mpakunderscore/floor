@@ -1,26 +1,8 @@
-const port = 8080;
-const ip = '192.168.0.111:' + port;
-
-let socket = io(ip, {secure: false});
-// let socket = io(window.location.hostname, {secure: true});
-
-// socket.on('connect', function(){});
-// socket.on('event', function(data){});
-// socket.on('disconnect', function(){});
-
-// export let sendSound = function () {
-//     socket.emit('sound', 'some sound');
-// };
-
-// export let sendLocation = function (region) {
-//     socket.emit('location', JSON.stringify(region));
-// };
+let socket = io();
 
 function down() {
-
     socket.emit('down', '');
 }
-
 
 socket.on('state', (state) => {
 

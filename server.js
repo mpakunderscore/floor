@@ -1,11 +1,13 @@
 //SERVER
-let state = {0: [0, 0]};
+let state = {};
+state[111] = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1];
 
 //HTTP
 let express = require('express');
 let path = require('path');
 let app = express();
 app.use(express.static(path.join(__dirname, 'web')));
+app.use('/siren', express.static(path.join(__dirname, 'web/siren.html')));
 
 let server = require('http').Server(app);
 const port = process.env.PORT || 8080;
@@ -59,14 +61,14 @@ let tcpServer = net.createServer(function(tcpSocket) {
             }
         }
 
-        tcpSocket.write('A');
+        // tcpSocket.write('A');
     });
 
     tcpSocket.on('error', function (error) {
         console.log(error);
     });
 
-    tcpSocket.write('Echo server');
+    // tcpSocket.write('Echo server');
 });
 
 tcpServer.listen(6060);
