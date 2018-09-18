@@ -88,6 +88,13 @@ main {
 #siren div {
     width: 25%;
     height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+
+    font-size: 48px;
 }
 
 #siren div.white {
@@ -99,10 +106,12 @@ main {
 }
 
 #siren div.black {
+    color: white;
     background-color: black;
 }
 
 #siren div.red {
+    color: white;
     background-color: red;
 }
 

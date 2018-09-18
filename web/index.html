@@ -31,32 +31,32 @@
             <div id="menu" class="column">
 
                 <div class="menu">
-                    <div onclick="start()" class="button">Старт</div>
-                    <div onclick="stop()" class="button disabled">Стоп</div>
-                    <div onclick="test()" class="button">Тест</div>
+                    <div class="button" onclick="window.open('/siren', '_blank');">Siren</div>
                 </div>
 
                 <div class="menu">
-                    <div onclick="up()" class="button">Поднять</div>
-                    <div onclick="down()" class="button disabled">Опустить</div>
+                    <div onclick="up()" class="button">Up</div>
+                    <div onclick="down()" class="button disabled">Down</div>
                 </div>
 
                 <div class="menu">
-                    <div onclick="htmlMap()" class="button">Сброс</div>
-                    <div onclick="save()" class="button">Сохранить</div>
-                    <div onclick="load()" class="button">Загрузить</div>
+                    <div onclick="start()" class="button">Start</div>
+                    <div onclick="stop()" class="button disabled">Stop</div>
+                    <div onclick="test()" class="button">Test</div>
                 </div>
 
                 <div class="menu">
-                    <div>Победила</div>
-                    <div onclick="save()" class="button">1</div>
-                    <div onclick="save()" class="button" style="background-color: #3a7eff">2</div>
-                    <div onclick="save()" class="button" style="background-color: rgba(0,0,0,0.47)">3</div>
-                    <div onclick="save()" class="button" style="background-color: red">4</div>
+                    <div onclick="load()" class="button">Load</div>
+                    <div onclick="save()" class="button">Save</div>
+                    <div onclick="htmlMap()" class="button">Reset</div>
                 </div>
 
                 <div class="menu">
-                    <div class="button" onclick="window.open('/siren', '_blank');">Сирена</div>
+                    <div class="">Win</div>
+                    <div onclick="win(1)" class="button">1</div>
+                    <div onclick="win(2)" class="button" style="background-color: #3a7eff">2</div>
+                    <div onclick="win(3)" class="button" style="background-color: rgba(0,0,0,0.47)">3</div>
+                    <div onclick="win(4)" class="button" style="background-color: red">4</div>
                 </div>
 
             </div>
