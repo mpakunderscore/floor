@@ -133,7 +133,7 @@ function reset() {
 
 function check() {
 
-    console.log("check")
+    // console.log("check")
 
     let wrong = 0;
     let correct = 0;

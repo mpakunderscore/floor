@@ -1,6 +1,8 @@
 //SERVER
 let state = {};
-state[111] = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1];
+
+let sirenTime = 10000;
+let sirenOn = false;
 
 //HTTP
 let express = require('express');
@@ -37,11 +39,11 @@ io.on('connection', (socket) => {
 });
 
 function up(socket, message) {
-    tcpSocketOne.write('U');
+    tcpSocket1.write('U');
 }
 
 function down(socket, message) {
-    tcpSocketOne.write('D');
+    tcpSocket1.write('D');
 }
 
 function siren(socket, message) {
@@ -50,54 +52,44 @@ function siren(socket, message) {
 
     switch(message) {
         case 1:
-            tcpSocket1.write('Z');
+            if (tcpSocket1 !== null) {
+                tcpSocket1.write('Z');
+                setTimeout(function(){ tcpSocket1.write('X'); }, sirenTime);
+            }
             break;
         case 2:
-            tcpSocket2.write('Z');
+            if (tcpSocket2 !== null) {
+                tcpSocket2.write('Z');
+                setTimeout(function(){ tcpSocket2.write('X'); }, sirenTime);
+            }
             break;
         case 3:
-            tcpSocket3.write('Z');
+            if (tcpSocket3 !== null) {
+                tcpSocket3.write('Z');
+                setTimeout(function(){ tcpSocket3.write('X'); }, sirenTime);
+            }
             break;
         case 4:
-            tcpSocket4.write('Z');
+            if (tcpSocket3 !== null) {
+                tcpSocket3.write('Z');
+                setTimeout(function(){ tcpSocket3.write('X'); }, sirenTime);
+            }
             break;
         default:
             console.log("Siren error from " + message);
     }
 
-    // TODO turn off after 10 sec
-    // tcpSocketOne.write('X');
+
 }
 
 function win(socket, message) {
 
-    switch(message) {
-        case 1:
-            tcpSocket1.write('Z');
-            break;
-        case 2:
-            tcpSocket1.write('Z');
-            break;
-        case 3:
-            tcpSocket1.write('Z');
-            break;
-        case 4:
-            tcpSocket1.write('Z');
-            break;
-        default:
-            console.log("Siren error from " + message);
-    }
+    tcpSocket1.write(message.toString());
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 }
 
 //TCP SOCKET
 let net = require('net');
-
-// setInterval(function(){
-//
-//     io.sockets.emit('state', JSON.stringify(state));
-//
-// }, 1000);
 
 let tcpSocket1 = null;
 let tcpSocket2 = null;
@@ -115,7 +107,14 @@ let tcpServer = net.createServer(function(tcpSocket) {
         let array = JSON.parse(JSON.stringify(data)).data;
         if (array.length >= 13) {
 
+            // console.log(array);
+
             let side = array.shift();
+
+            if (side === 91) {
+                side = 101;
+                array = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1];
+            }
 
             if (side >= 100 && side <= 110) {
 
@@ -137,34 +136,11 @@ let tcpServer = net.createServer(function(tcpSocket) {
                 io.sockets.emit('state', JSON.stringify(state));
             }
         }
-
-        // tcpSocket.write('A');
-    });
+        });
 
     tcpSocket.on('error', function (error) {
         console.log(error);
     });
-
-    // tcpSocket.write('Echo server');
 });
 
 tcpServer.listen(6060);
-
-
-
-//CLIENT
-
-// var client = new net.Socket();
-// client.connect(6060, '127.0.0.1', function() {
-//     console.log('Connected');
-//     client.write('Hello, server! Love, Client.');
-// });
-//
-// client.on('data', function(data) {
-//     console.log('Received: ' + data);
-//     client.destroy(); // kill client after server's response
-// });
-//
-// client.on('close', function() {
-//     console.log('Connection closed');
-// });
