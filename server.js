@@ -123,13 +123,13 @@ let tcpServer = net.createServer(function(tcpSocket) {
                     tcpSocket1 = tcpSocket;
 
                 if (side === 102)
-                    tcpSocket1 = tcpSocket;
+                    tcpSocket2 = tcpSocket;
 
                 if (side === 103)
-                    tcpSocket1 = tcpSocket;
+                    tcpSocket3 = tcpSocket;
 
                 if (side === 104)
-                    tcpSocket1 = tcpSocket;
+                    tcpSocket4 = tcpSocket;
 
                 io.sockets.emit('state', JSON.stringify(state));
             }
