@@ -19,27 +19,5 @@ function win(id) {
 }
 
 socket.on('state', (state) => {
-
-    console.log(JSON.parse(state));
-    set(JSON.parse(state))
+    setState(JSON.parse(state))
 });
-
-function set(state) {
-
-    reset();
-
-    // for (let i = 0; i < 8; i++) {
-    //
-    //     for (let j = 0; j < 8; j++) {
-    //
-    //         if (i === j || i === 7 - j) {
-    //             continue;
-    //         }
-    //
-    //         if (Math.random() > 0.9)
-    //             signal(i, j);
-    //     }
-    // }
-
-    check();
-}

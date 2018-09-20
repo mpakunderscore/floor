@@ -78,8 +78,6 @@ function siren(socket, message) {
         default:
             console.log("Siren error from " + message);
     }
-
-
 }
 
 function win(socket, message) {
@@ -112,8 +110,8 @@ let tcpServer = net.createServer(function(tcpSocket) {
             let side = array.shift();
 
             if (side === 91) {
-                side = 101;
-                array = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1];
+                side = 104;
+                array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
             }
 
             if (side >= 100 && side <= 110) {

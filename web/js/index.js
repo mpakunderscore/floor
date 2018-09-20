@@ -112,7 +112,7 @@ function test() {
 function signal(i, j) {
 
     state[i][j] = 1;
-    $("#signal" + i + j).addClass("red");
+    $("#signal" + i + j).addClass("on");
 }
 
 function reset() {
@@ -126,7 +126,7 @@ function reset() {
             }
 
             state[i][j] = 0;
-            $("#signal" + i + j).removeClass("red");
+            $("#signal" + i + j).removeClass("on");
         }
     }
 }
