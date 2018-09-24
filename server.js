@@ -144,7 +144,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
             }
         }
 
-        tcpSocket.write('Z');
+        tcpSocket.write('N');
     });
 
     tcpSocket.on('error', function (error) {
