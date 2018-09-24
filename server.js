@@ -114,7 +114,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
         let array = JSON.parse(JSON.stringify(data)).data;
         if (array.length >= 13) {
 
-            // console.log(array);
+            console.log(array);
 
             let side = array.shift();
 
