@@ -38,18 +38,23 @@ io.on('connection', (socket) => {
     // socket.on('disconnect', () => removeUser(socket));
 });
 
+let tcpSocket1 = [];
+let tcpSocket2 = [];
+let tcpSocket3 = [];
+let tcpSocket4 = [];
+
 function up(socket, message) {
 
-    if (tcpSocket1 !== null) {
-        tcpSocket1.write('U');
-    }
+    // if (tcpSocket1 !== null) {
+    //     tcpSocket1.write('U');
+    // }
 }
 
 function down(socket, message) {
 
-    if (tcpSocket1 !== null) {
-        tcpSocket1.write('D');
-    }
+    // if (tcpSocket1 !== null) {
+    //     tcpSocket1.write('D');
+    // }
 }
 
 function siren(socket, message) {
@@ -58,28 +63,20 @@ function siren(socket, message) {
 
     switch(message) {
         case 1:
-            if (tcpSocket1 !== null) {
-                tcpSocket1.write('Z');
-                setTimeout(function(){ tcpSocket1.write('X'); }, sirenTime);
-            }
+            tcpSocket1.push('Z');
+            setTimeout(function(){ tcpSocket1.push('X'); }, sirenTime);
             break;
         case 2:
-            if (tcpSocket2 !== null) {
-                tcpSocket2.write('Z');
-                setTimeout(function(){ tcpSocket2.write('X'); }, sirenTime);
-            }
+            tcpSocket2.push('Z');
+            setTimeout(function(){ tcpSocket2.push('X'); }, sirenTime);
             break;
         case 3:
-            if (tcpSocket3 !== null) {
-                tcpSocket3.write('Z');
-                setTimeout(function(){ tcpSocket3.write('X'); }, sirenTime);
-            }
+            tcpSocket3.push('Z');
+            setTimeout(function(){ tcpSocket3.push('X'); }, sirenTime);
             break;
         case 4:
-            if (tcpSocket3 !== null) {
-                tcpSocket3.write('Z');
-                setTimeout(function(){ tcpSocket3.write('X'); }, sirenTime);
-            }
+            tcpSocket4.push('Z');
+            setTimeout(function(){ tcpSocket4.push('X'); }, sirenTime);
             break;
         default:
             console.log("Siren error from " + message);
@@ -88,20 +85,18 @@ function siren(socket, message) {
 
 function win(socket, message) {
 
-    if (tcpSocket1 !== null) {
-        tcpSocket1.write(message.toString());
-    }
+    // if (tcpSocket1 !== null) {
+    //     tcpSocket1.write(message.toString());
+    // }
+
+    // A B C D
+    tcpSocket1.push(message);
 
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 }
 
 //TCP SOCKET
 let net = require('net');
-
-let tcpSocket1 = null;
-let tcpSocket2 = null;
-let tcpSocket3 = null;
-let tcpSocket4 = null;
 
 let tcpServer = net.createServer(function(tcpSocket) {
 
@@ -128,19 +123,40 @@ let tcpServer = net.createServer(function(tcpSocket) {
                 state[side] = array.slice(0, 12);
                 // console.log(state);
 
-                if (side === 101)
-                    tcpSocket1 = tcpSocket;
-
-                if (side === 102)
-                    tcpSocket2 = tcpSocket;
-
-                if (side === 103)
-                    tcpSocket3 = tcpSocket;
-
-                if (side === 104)
-                    tcpSocket4 = tcpSocket;
+                // if (side === 101)
+                //     tcpSocket1 = tcpSocket;
+                //
+                // if (side === 102)
+                //     tcpSocket2 = tcpSocket;
+                //
+                // if (side === 103)
+                //     tcpSocket3 = tcpSocket;
+                //
+                // if (side === 104)
+                //     tcpSocket4 = tcpSocket;
 
                 io.sockets.emit('state', JSON.stringify(state));
+
+                if (tcpSocket1.length > 0) {
+                    tcpSocket.write(tcpSocket1.shift());
+                    return;
+                }
+
+
+                if (tcpSocket2.length > 0) {
+                    tcpSocket.write(tcpSocket2.shift());
+                    return;
+                }
+
+                if (tcpSocket3.length > 0) {
+                    tcpSocket.write(tcpSocket3.shift());
+                    return;
+                }
+
+                if (tcpSocket4.length > 0) {
+                    tcpSocket.write(tcpSocket4.shift());
+                    return;
+                }
             }
         }
 

@@ -8,7 +8,7 @@ let state = [101, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1];
 
 let client = new net.Socket();
 
-client.connect(6060, '92.61.69.168', function() {
+client.connect(6060, 'localhost', function() {
 
     console.log('Connected');
 
@@ -22,7 +22,7 @@ client.connect(6060, '92.61.69.168', function() {
 
         }
 
-    }, 50);
+    }, 1000);
 });
 
 client.on('data', function(data) {
