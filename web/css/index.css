@@ -71,9 +71,9 @@ main {
 }
 
 #floor {
-    border-top: solid white 3px;
+    border-top: solid forestgreen 3px;
     border-right: solid #3a7eff 3px;
-    border-bottom: solid black 3px;
+    border-bottom: solid yellow 3px;
     border-left: solid red 3px;
 }
 

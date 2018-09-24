@@ -82,7 +82,10 @@ function siren(socket, message) {
 
 function win(socket, message) {
 
-    tcpSocket1.write(message.toString());
+    if (tcpSocket1 !== null) {
+        tcpSocket1.write(message.toString());
+    }
+
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 }
 
