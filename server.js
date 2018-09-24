@@ -39,11 +39,17 @@ io.on('connection', (socket) => {
 });
 
 function up(socket, message) {
-    tcpSocket1.write('U');
+
+    if (tcpSocket1 !== null) {
+        tcpSocket1.write('U');
+    }
 }
 
 function down(socket, message) {
-    tcpSocket1.write('D');
+
+    if (tcpSocket1 !== null) {
+        tcpSocket1.write('D');
+    }
 }
 
 function siren(socket, message) {
