@@ -111,7 +111,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
 
     tcpSocket.on('data', function (data) {
 
-        let array = JSON.parse(JSON.stringify(data)).data;
+        let array = JSON.parse(JSON.stringify(data))['data'];
         if (array.length >= 13) {
 
             console.log(array);
