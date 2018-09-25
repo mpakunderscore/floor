@@ -267,6 +267,15 @@ let tcpServer = net.createServer(function(tcpSocket) {
 
             if (side >= 100 && side <= 110) {
 
+                array = array.slice(0, 12);
+
+                for (let i = 0; i < array.length; i++) {
+                    if (array[i] === 0)
+                        array[i] = 1;
+                    if (array[i] === 1)
+                        array[i] = 0;
+                }
+
                 state[side] = array.slice(0, 12);
                 // console.log(state);
 
