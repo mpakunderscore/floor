@@ -47,6 +47,8 @@ io.on('connection', (socket) => {
 
     socket.emit('statePress', JSON.stringify(statePress));
 
+    socket.emit('started', started);
+
     socket.on('up', (message) => up(socket, message));
 
     socket.on('down', (message) => down(socket, message));
@@ -139,7 +141,7 @@ function press(socket, message) {
 
     let data = message.split('|');
 
-    console.log(data)
+    console.log(data);
 
     statePress[data[0]][data[1]] = parseInt(data[2]);
 
@@ -180,22 +182,22 @@ let tcpServer = net.createServer(function(tcpSocket) {
 
                 roster.checkState(state);
 
-                if (tcpSocket1.length > 0) {
+                if (tcpSocket1.length > 0 && side === 101) {
                     tcpSocket.write(tcpSocket1.shift());
                     return;
                 }
 
-                if (tcpSocket2.length > 0) {
+                if (tcpSocket2.length > 0 && side === 102) {
                     tcpSocket.write(tcpSocket2.shift());
                     return;
                 }
 
-                if (tcpSocket3.length > 0) {
+                if (tcpSocket3.length > 0 && side === 103) {
                     tcpSocket.write(tcpSocket3.shift());
                     return;
                 }
 
-                if (tcpSocket4.length > 0) {
+                if (tcpSocket4.length > 0 && side === 104) {
                     tcpSocket.write(tcpSocket4.shift());
                     return;
                 }

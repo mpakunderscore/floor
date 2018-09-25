@@ -47,3 +47,13 @@ socket.on('stop', (state) => {
     $('#start').removeClass('disabled');
     $('#stop').addClass('disabled');
 });
+
+socket.on('started', (started) => {
+    if (started) {
+        $('#start').addClass('disabled');
+        $('#stop').removeClass('disabled');
+    } else {
+        $('#start').removeClass('disabled');
+        $('#stop').addClass('disabled');
+    }
+});
