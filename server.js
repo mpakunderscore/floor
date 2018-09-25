@@ -285,7 +285,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
 
                 io.sockets.emit('state', JSON.stringify(state));
 
-                roster.checkState(state, statePress);
+                // roster.checkState(state, statePress);
 
                 if (tcpSocket1.length > 0 && side === 101) {
                     tcpSocket.write(tcpSocket1.shift());
