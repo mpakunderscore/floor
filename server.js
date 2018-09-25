@@ -148,27 +148,43 @@ exports.sirenPress = function (message) {
     switch(message) {
         case 101:
             tcpSocket1.push('Z');
-            // tcpSocket1.push('Z');
-            // tcpSocket1.push('Z');
-            setTimeout(function(){ tcpSocket1.push('X'); }, sirenTime);
+            tcpSocket1.push('Z');
+            tcpSocket1.push('Z');
+            setTimeout(function(){
+                tcpSocket1.push('X');
+                tcpSocket1.push('X');
+                tcpSocket1.push('X');
+                }, sirenTime);
             break;
         case 102:
             tcpSocket2.push('Z');
-            // tcpSocket2.push('Z');
-            // tcpSocket2.push('Z');
-            setTimeout(function(){ tcpSocket2.push('X'); }, sirenTime);
+            tcpSocket2.push('Z');
+            tcpSocket2.push('Z');
+            setTimeout(function(){
+                tcpSocket2.push('X');
+                tcpSocket2.push('X');
+                tcpSocket2.push('X');
+            }, sirenTime);
             break;
         case 103:
             tcpSocket3.push('Z');
-            // tcpSocket3.push('Z');
-            // tcpSocket3.push('Z');
-            setTimeout(function(){ tcpSocket3.push('X'); }, sirenTime);
+            tcpSocket3.push('Z');
+            tcpSocket3.push('Z');
+            setTimeout(function(){
+                tcpSocket3.push('X');
+                tcpSocket3.push('X');
+                tcpSocket3.push('X');
+            }, sirenTime);
             break;
         case 104:
             tcpSocket4.push('Z');
-            // tcpSocket4.push('Z');
-            // tcpSocket4.push('Z');
-            setTimeout(function(){ tcpSocket4.push('X'); }, sirenTime);
+            tcpSocket4.push('Z');
+            tcpSocket4.push('Z');
+            setTimeout(function(){
+                tcpSocket4.push('X');
+                tcpSocket4.push('X');
+                tcpSocket4.push('X');
+            }, sirenTime);
             break;
         default:
             console.log("Siren error from " + message);
