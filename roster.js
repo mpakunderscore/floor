@@ -230,5 +230,5 @@ exports.checkState = function (state, statePressed) {
 function signal(i, j) {
 
     win = false;
-    server.sirenPress(i);
+    // server.sirenPress(i);
 }
