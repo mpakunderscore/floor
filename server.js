@@ -272,7 +272,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
                 for (let i = 0; i < array.length; i++) {
                     if (array[i] === 0)
                         array[i] = 1;
-                    if (array[i] === 1)
+                    else if (array[i] === 1)
                         array[i] = 0;
                 }
 
