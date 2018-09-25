@@ -1,5 +1,23 @@
 //SERVER
 let state = {};
+let statePress = [];
+
+function loadStatePress() {
+
+    for (let i = 0; i < 8; i++) {
+
+        statePress[i] = [];
+
+        for (let j = 0; j < 8; j++) {
+
+            statePress[i][j] = 0;
+        }
+    }
+
+    statePress[1][0] = 1;
+}
+
+loadStatePress();
 
 let sirenTime = 10000;
 let sirenOn = false;
@@ -27,6 +45,8 @@ io.on('connection', (socket) => {
 
     socket.emit('state', JSON.stringify(state));
 
+    socket.emit('statePress', JSON.stringify(statePress));
+
     socket.on('up', (message) => up(socket, message));
 
     socket.on('down', (message) => down(socket, message));
@@ -35,8 +55,16 @@ io.on('connection', (socket) => {
 
     socket.on('win', (message) => win(socket, message));
 
+    socket.on('start', (message) => start(socket, message));
+
+    socket.on('stop', (message) => stop(socket, message));
+
+    socket.on('press', (message) => press(socket, message));
+
     // socket.on('disconnect', () => removeUser(socket));
 });
+
+let started = false;
 
 let tcpSocket1 = [];
 let tcpSocket2 = [];
@@ -58,6 +86,9 @@ function down(socket, message) {
 }
 
 function siren(socket, message) {
+
+    if (!started)
+        return;
 
     // на сообщение Z я включаю сирену, на сообщение Х выключаю (на каждом девайсе)
 
@@ -85,9 +116,8 @@ function siren(socket, message) {
 
 function win(socket, message) {
 
-    // if (tcpSocket1 !== null) {
-    //     tcpSocket1.write(message.toString());
-    // }
+    if (!started)
+        return;
 
     // A B C D
     tcpSocket1.push(message);
@@ -95,8 +125,31 @@ function win(socket, message) {
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 }
 
+function start(socket, message) {
+    started = true;
+    io.sockets.emit('start', '');
+}
+
+function stop(socket, message) {
+    started = false;
+    io.sockets.emit('stop', '');
+}
+
+function press(socket, message) {
+
+    let data = message.split('|');
+
+    console.log(data)
+
+    statePress[data[0]][data[1]] = parseInt(data[2]);
+
+    io.sockets.emit('statePress', JSON.stringify(statePress));
+}
+
 //TCP SOCKET
 let net = require('net');
+
+let roster = require('./roster.js');
 
 let tcpServer = net.createServer(function(tcpSocket) {
 
@@ -123,25 +176,14 @@ let tcpServer = net.createServer(function(tcpSocket) {
                 state[side] = array.slice(0, 12);
                 // console.log(state);
 
-                // if (side === 101)
-                //     tcpSocket1 = tcpSocket;
-                //
-                // if (side === 102)
-                //     tcpSocket2 = tcpSocket;
-                //
-                // if (side === 103)
-                //     tcpSocket3 = tcpSocket;
-                //
-                // if (side === 104)
-                //     tcpSocket4 = tcpSocket;
-
                 io.sockets.emit('state', JSON.stringify(state));
+
+                roster.checkState(state);
 
                 if (tcpSocket1.length > 0) {
                     tcpSocket.write(tcpSocket1.shift());
                     return;
                 }
-
 
                 if (tcpSocket2.length > 0) {
                     tcpSocket.write(tcpSocket2.shift());

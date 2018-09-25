@@ -37,22 +37,22 @@ function htmlMap() {
 
 htmlMap();
 
-function loadMap(newMap) {
-
-    htmlMap();
-
-    for (let i = 0; i < 8; i++) {
-
-        for (let j = 0; j < 8; j++) {
-
-            if (newMap[i][j] === 1) {
-
-                map[i][j] = 1;
-                $("#cell" + i + j).addClass("check");
-            }
-        }
-    }
-}
+// function loadMap(newMap) {
+//
+//     htmlMap();
+//
+//     for (let i = 0; i < 8; i++) {
+//
+//         for (let j = 0; j < 8; j++) {
+//
+//             if (newMap[i][j] === 1) {
+//
+//                 map[i][j] = 1;
+//                 $("#cell" + i + j).addClass("check");
+//             }
+//         }
+//     }
+// }
 
 function press(i, j) {
 
@@ -62,52 +62,54 @@ function press(i, j) {
 
         map[i][j] = 0;
         $("#cell" + i + j).removeClass("check");
+        pressSend(i, j, 0);
 
     } else {
 
         map[i][j] = 1;
         $("#cell" + i + j).addClass("check");
+        pressSend(i, j, 1);
     }
 }
 
 
-function save() {
+// function save() {
+//
+//     console.log("save");
+//
+//     localStorage.setItem("first", JSON.stringify(map));
+// }
 
-    console.log("save");
+// function load() {
+//
+//     let newMap = JSON.parse(localStorage.getItem("first"));
+//
+//     console.log("load");
+//     console.log(newMap);
+//
+//     if (newMap)
+//         loadMap(newMap);
+// }
 
-    localStorage.setItem("first", JSON.stringify(map));
-}
-
-function load() {
-
-    let newMap = JSON.parse(localStorage.getItem("first"));
-
-    console.log("load");
-    console.log(newMap);
-
-    if (newMap)
-        loadMap(newMap);
-}
-
-function test() {
-
-    reset();
-
-    for (let i = 0; i < 8; i++) {
-
-        for (let j = 0; j < 8; j++) {
-
-            if (i === j || i === 7 - j) {
-                continue;
-            }
-
-            if (Math.random() > 0.9)
-                signal(i, j);
-        }
-    }
-
-    check();
-}
+// function test() {
+//
+//     reset();
+//
+//     for (let i = 0; i < 8; i++) {
+//
+//         for (let j = 0; j < 8; j++) {
+//
+//             if (i === j || i === 7 - j) {
+//                 continue;
+//             }
+//
+//             if (Math.random() > 0.9)
+//                 signal(i, j);
+//         }
+//     }
+//
+//     // check();
+// }
 
 function signal(i, j) {
 
@@ -131,33 +133,33 @@ function reset() {
     }
 }
 
-function check() {
-
-    // console.log("check")
-
-    let wrong = 0;
-    let correct = 0;
-
-    for (let i = 0; i < 8; i++) {
-
-        for (let j = 0; j < 8; j++) {
-
-            if (i === j || i === 7 - j) {
-                continue;
-            }
-
-            if (state[i][j] === 1 && map[i][j] === 0)
-                wrong++;
-
-            // console.log(map[i][j] === 1);
-
-            if (state[i][j] === 1 && map[i][j] === 1) {
-                correct++;
-            }
-
-        }
-    }
-
-    $("#wrong").text(wrong);
-    $("#correct").text(correct);
-}
+// function check() {
+//
+//     // console.log("check")
+//
+//     let wrong = 0;
+//     let correct = 0;
+//
+//     for (let i = 0; i < 8; i++) {
+//
+//         for (let j = 0; j < 8; j++) {
+//
+//             if (i === j || i === 7 - j) {
+//                 continue;
+//             }
+//
+//             if (state[i][j] === 1 && map[i][j] === 0)
+//                 wrong++;
+//
+//             // console.log(map[i][j] === 1);
+//
+//             if (state[i][j] === 1 && map[i][j] === 1) {
+//                 correct++;
+//             }
+//
+//         }
+//     }
+//
+//     $("#wrong").text(wrong);
+//     $("#correct").text(correct);
+// }

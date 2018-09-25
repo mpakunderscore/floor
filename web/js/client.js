@@ -18,6 +18,32 @@ function win(id) {
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 }
 
+function start() {
+    socket.emit('start', '');
+}
+
+function stop() {
+    socket.emit('stop', '');
+}
+
+function pressSend(i, j, pressed) {
+    socket.emit('press', i + '|' + j + '|' + pressed);
+}
+
 socket.on('state', (state) => {
     setState(JSON.parse(state))
+});
+
+socket.on('statePress', (state) => {
+    setStatePress(JSON.parse(state))
+});
+
+socket.on('start', (state) => {
+    $('#start').addClass('disabled');
+    $('#stop').removeClass('disabled');
+});
+
+socket.on('stop', (state) => {
+    $('#start').removeClass('disabled');
+    $('#stop').addClass('disabled');
 });

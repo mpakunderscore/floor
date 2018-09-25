@@ -58,5 +58,23 @@ function setState(state) {
     if (state[104] && state[104][10] === 1) signal(4, 2);
     if (state[104] && state[104][11] === 1) signal(3, 2);
 
-    check();
+    // check();
+}
+
+function setStatePress(state) {
+
+    console.log(state);
+
+    htmlMap();
+
+    for (let i = 0; i < 8; i++) {
+
+        for (let j = 0; j < 8; j++) {
+
+            if (state[i][j] === 1) {
+
+                $("#cell" + i + j).addClass("check");
+            }
+        }
+    }
 }
