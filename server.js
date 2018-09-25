@@ -147,43 +147,47 @@ exports.sirenPress = function (message) {
 
     switch(message) {
         case 101:
+            if (tcpSocket1.length === 0)
             tcpSocket1.push('Z');
-            tcpSocket1.push('Z');
-            tcpSocket1.push('Z');
+            // tcpSocket1.push('Z');
+            // tcpSocket1.push('Z');
             setTimeout(function(){
                 tcpSocket1.push('X');
-                tcpSocket1.push('X');
-                tcpSocket1.push('X');
+                // tcpSocket1.push('X');
+                // tcpSocket1.push('X');
                 }, sirenTime);
             break;
         case 102:
+            if (tcpSocket2.length === 0)
             tcpSocket2.push('Z');
-            tcpSocket2.push('Z');
-            tcpSocket2.push('Z');
+            // tcpSocket2.push('Z');
+            // tcpSocket2.push('Z');
             setTimeout(function(){
                 tcpSocket2.push('X');
-                tcpSocket2.push('X');
-                tcpSocket2.push('X');
+                // tcpSocket2.push('X');
+                // tcpSocket2.push('X');
             }, sirenTime);
             break;
         case 103:
+            if (tcpSocket3.length === 0)
             tcpSocket3.push('Z');
-            tcpSocket3.push('Z');
-            tcpSocket3.push('Z');
+            // tcpSocket3.push('Z');
+            // tcpSocket3.push('Z');
             setTimeout(function(){
                 tcpSocket3.push('X');
-                tcpSocket3.push('X');
-                tcpSocket3.push('X');
+                // tcpSocket3.push('X');
+                // tcpSocket3.push('X');
             }, sirenTime);
             break;
         case 104:
+            if (tcpSocket4.length === 0)
             tcpSocket4.push('Z');
-            tcpSocket4.push('Z');
-            tcpSocket4.push('Z');
+            // tcpSocket4.push('Z');
+            // tcpSocket4.push('Z');
             setTimeout(function(){
                 tcpSocket4.push('X');
-                tcpSocket4.push('X');
-                tcpSocket4.push('X');
+                // tcpSocket4.push('X');
+                // tcpSocket4.push('X');
             }, sirenTime);
             break;
         default:
@@ -305,7 +309,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
             }
         }
 
-        tcpSocket.write('N');
+        // tcpSocket.write('N');
     });
 
     tcpSocket.on('error', function (error) {
