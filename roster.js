@@ -1,20 +1,66 @@
+let server = require('./server.js');
+
+let win = false;
+
 exports.checkState = function (state, statePressed) {
 
     // console.log(state);
     // console.log(statePressed);
 
+    win = true;
+
     if (state[101] && state[101][0] === 1 && statePressed[0][1] === 1) signal(101, 0);
+
+    if (state[101] && state[101][0] === 0 && statePressed[0][1] === 0) win = false;
+
     if (state[101] && state[101][1] === 1 && statePressed[0][2] === 1) signal(101, 1);
+
+    if (state[101] && state[101][1] === 0 && statePressed[0][2] === 0) win = false;
+
     if (state[101] && state[101][2] === 1 && statePressed[0][3] === 1) signal(101, 2);
+
+    if (state[101] && state[101][2] === 0 && statePressed[0][3] === 0) win = false;
+
     if (state[101] && state[101][3] === 1 && statePressed[0][4] === 1) signal(101, 3);
+
+    if (state[101] && state[101][3] === 0 && statePressed[0][4] === 0) win = false;
+
     if (state[101] && state[101][4] === 1 && statePressed[0][5] === 1) signal(101, 4);
+
+    if (state[101] && state[101][4] === 0 && statePressed[0][5] === 0) win = false;
+
     if (state[101] && state[101][5] === 1 && statePressed[0][6] === 1) signal(101, 5);
+
+    if (state[101] && state[101][5] === 0 && statePressed[0][6] === 0) win = false;
+
     if (state[101] && state[101][6] === 1 && statePressed[1][2] === 1) signal(101, 6);
+
+    if (state[101] && state[101][6] === 0 && statePressed[1][2] === 0) win = false;
+
     if (state[101] && state[101][7] === 1 && statePressed[1][3] === 1) signal(101, 7);
+
+    if (state[101] && state[101][7] === 0 && statePressed[1][3] === 0) win = false;
+
     if (state[101] && state[101][8] === 1 && statePressed[1][4] === 1) signal(101, 8);
+
+    if (state[101] && state[101][8] === 0 && statePressed[1][4] === 0) win = false;
+
     if (state[101] && state[101][9] === 1 && statePressed[1][5] === 1) signal(101, 9);
+
+    if (state[101] && state[101][9] === 0 && statePressed[1][5] === 0) win = false;
+
     if (state[101] && state[101][10] === 1 && statePressed[2][3] === 1) signal(101, 10);
+
+    if (state[101] && state[101][10] === 0 && statePressed[2][3] === 0) win = false;
+
     if (state[101] && state[101][11] === 1 && statePressed[2][4] === 1) signal(101, 11);
+
+    if (state[101] && state[101][11] === 0 && statePressed[2][4] === 0) win = false;
+
+    if (win) {
+        server.winPress('A');
+        return;
+    }
 
     if (state[102] && state[102][0] === 1 && statePressed[1][7] === 1) signal(102, 0);
     if (state[102] && state[102][1] === 1 && statePressed[2][7] === 1) signal(102, 1);
@@ -56,9 +102,8 @@ exports.checkState = function (state, statePressed) {
     if (state[104] && state[104][11] === 1 && statePressed[3][2] === 1) signal(104, 11);
 };
 
-let server = require('./server.js');
-
 function signal(i, j) {
 
+    win = false;
     server.sirenPress(i);
 }

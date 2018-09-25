@@ -204,6 +204,21 @@ function win(socket, message) {
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 }
 
+exports.winPress = function (message) {
+
+    if (!started)
+        return;
+
+    // A B C D
+    tcpSocket1.push(message);
+    tcpSocket1.push(message);
+    tcpSocket1.push(message);
+
+    stop(null, null);
+
+    // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
+};
+
 function start(socket, message) {
     started = true;
     io.sockets.emit('start', '');
@@ -247,7 +262,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
 
             if (side === 91) {
                 side = 101;
-                array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+                array = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0];
             }
 
             if (side >= 100 && side <= 110) {
