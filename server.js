@@ -169,7 +169,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
             let side = array.shift();
 
             if (side === 91) {
-                side = 104;
+                side = 101;
                 array = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
             }
 
