@@ -73,6 +73,7 @@ function setStatePress(state) {
 
             if (state[i][j] === 1) {
 
+                map[i][j] = 1;
                 $("#cell" + i + j).addClass("check");
             }
         }

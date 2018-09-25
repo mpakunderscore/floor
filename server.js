@@ -1,6 +1,6 @@
 //SERVER
-let state = {};
-let statePress = [];
+let state = {}; //{101: [0-11], 102 ...}
+let statePress = []; //[i][j]
 
 function loadStatePress() {
 
@@ -97,24 +97,83 @@ function siren(socket, message) {
     switch(message) {
         case 1:
             tcpSocket1.push('Z');
-            setTimeout(function(){ tcpSocket1.push('X'); }, sirenTime);
+            tcpSocket1.push('Z');
+            tcpSocket1.push('Z');
+            setTimeout(function(){
+                tcpSocket1.push('X');
+                tcpSocket1.push('X');
+                tcpSocket1.push('X');
+            }, sirenTime);
             break;
         case 2:
             tcpSocket2.push('Z');
-            setTimeout(function(){ tcpSocket2.push('X'); }, sirenTime);
+            tcpSocket2.push('Z');
+            tcpSocket2.push('Z');
+            setTimeout(function(){
+                tcpSocket2.push('X');
+                tcpSocket2.push('X');
+                tcpSocket2.push('X');
+            }, sirenTime);
             break;
         case 3:
             tcpSocket3.push('Z');
-            setTimeout(function(){ tcpSocket3.push('X'); }, sirenTime);
+            tcpSocket3.push('Z');
+            tcpSocket3.push('Z');
+            setTimeout(function(){
+                tcpSocket3.push('X');
+                tcpSocket3.push('X');
+                tcpSocket3.push('X');
+            }, sirenTime);
             break;
         case 4:
             tcpSocket4.push('Z');
-            setTimeout(function(){ tcpSocket4.push('X'); }, sirenTime);
+            tcpSocket4.push('Z');
+            tcpSocket4.push('Z');
+            setTimeout(function(){
+                tcpSocket4.push('X');
+                tcpSocket4.push('X');
+                tcpSocket4.push('X');
+                }, sirenTime);
             break;
         default:
             console.log("Siren error from " + message);
     }
 }
+
+exports.sirenPress = function (message) {
+
+    if (!started)
+        return;
+
+    switch(message) {
+        case 101:
+            tcpSocket1.push('Z');
+            // tcpSocket1.push('Z');
+            // tcpSocket1.push('Z');
+            setTimeout(function(){ tcpSocket1.push('X'); }, sirenTime);
+            break;
+        case 102:
+            tcpSocket2.push('Z');
+            // tcpSocket2.push('Z');
+            // tcpSocket2.push('Z');
+            setTimeout(function(){ tcpSocket2.push('X'); }, sirenTime);
+            break;
+        case 103:
+            tcpSocket3.push('Z');
+            // tcpSocket3.push('Z');
+            // tcpSocket3.push('Z');
+            setTimeout(function(){ tcpSocket3.push('X'); }, sirenTime);
+            break;
+        case 104:
+            tcpSocket4.push('Z');
+            // tcpSocket4.push('Z');
+            // tcpSocket4.push('Z');
+            setTimeout(function(){ tcpSocket4.push('X'); }, sirenTime);
+            break;
+        default:
+            console.log("Siren error from " + message);
+    }
+};
 
 function win(socket, message) {
 
@@ -122,6 +181,8 @@ function win(socket, message) {
         return;
 
     // A B C D
+    tcpSocket1.push(message);
+    tcpSocket1.push(message);
     tcpSocket1.push(message);
 
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
@@ -180,7 +241,7 @@ let tcpServer = net.createServer(function(tcpSocket) {
 
                 io.sockets.emit('state', JSON.stringify(state));
 
-                roster.checkState(state);
+                roster.checkState(state, statePress);
 
                 if (tcpSocket1.length > 0 && side === 101) {
                     tcpSocket.write(tcpSocket1.shift());

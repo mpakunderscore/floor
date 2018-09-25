@@ -22,7 +22,7 @@ client.connect(6060, 'localhost', function() {
 
         }
 
-    }, 100);
+    }, 1000);
 });
 
 client.on('data', function(data) {
