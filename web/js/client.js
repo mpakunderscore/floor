@@ -9,7 +9,14 @@ function up() {
 }
 
 function siren(id) {
+    console.log('siren: ' + id)
     socket.emit('siren', id);
+    // на сообщение Z я включаю сирену, на сообщение Х выключаю (на каждом девайсе)
+}
+
+function sirenx(id) {
+    console.log('sirenx: ' + id)
+    socket.emit('sirenx', id);
     // на сообщение Z я включаю сирену, на сообщение Х выключаю (на каждом девайсе)
 }
 

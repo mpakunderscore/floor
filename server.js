@@ -55,6 +55,8 @@ io.on('connection', (socket) => {
 
     socket.on('siren', (message) => siren(socket, message));
 
+    socket.on('sirenx', (message) => siren(socket, message));
+
     socket.on('win', (message) => win(socket, message));
 
     socket.on('start', (message) => start(socket, message));
@@ -95,7 +97,7 @@ function siren(socket, message) {
     // на сообщение Z я включаю сирену, на сообщение Х выключаю (на каждом девайсе)
 
     switch(message) {
-        case 1:
+        case 101:
             tcpSocket1.push('Z');
             tcpSocket1.push('Z');
             tcpSocket1.push('Z');
@@ -105,7 +107,7 @@ function siren(socket, message) {
                 tcpSocket1.push('X');
             }, sirenTime);
             break;
-        case 2:
+        case 102:
             tcpSocket2.push('Z');
             tcpSocket2.push('Z');
             tcpSocket2.push('Z');
@@ -115,7 +117,7 @@ function siren(socket, message) {
                 tcpSocket2.push('X');
             }, sirenTime);
             break;
-        case 3:
+        case 103:
             tcpSocket3.push('Z');
             tcpSocket3.push('Z');
             tcpSocket3.push('Z');
@@ -125,7 +127,7 @@ function siren(socket, message) {
                 tcpSocket3.push('X');
             }, sirenTime);
             break;
-        case 4:
+        case 104:
             tcpSocket4.push('Z');
             tcpSocket4.push('Z');
             tcpSocket4.push('Z');
@@ -134,6 +136,31 @@ function siren(socket, message) {
                 tcpSocket4.push('X');
                 tcpSocket4.push('X');
                 }, sirenTime);
+            break;
+        default:
+            console.log("Siren error from " + message);
+    }
+}
+
+function sirenStop(socket, message) {
+
+    if (!started)
+        return;
+
+    // на сообщение Z я включаю сирену, на сообщение Х выключаю (на каждом девайсе)
+
+    switch(message) {
+        case 101:
+            tcpSocket1.push('X');
+            break;
+        case 102:
+            tcpSocket2.push('X');
+            break;
+        case 103:
+            tcpSocket3.push('X');
+            break;
+        case 104:
+            tcpSocket4.push('X');
             break;
         default:
             console.log("Siren error from " + message);
@@ -206,6 +233,10 @@ function win(socket, message) {
     tcpSocket1.push(message);
 
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
+
+    stop(null, null);
+
+    setTimeout(function(){tcpSocket1.push('E');}, 10000);
 }
 
 exports.winPress = function (message) {
@@ -218,9 +249,11 @@ exports.winPress = function (message) {
     tcpSocket1.push(message);
     tcpSocket1.push(message);
 
+    // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
+
     stop(null, null);
 
-    // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
+    setTimeout(function(){tcpSocket1.push('E');}, 10000);
 };
 
 function start(socket, message) {
@@ -264,10 +297,10 @@ let tcpServer = net.createServer(function(tcpSocket) {
 
             let side = array.shift();
 
-            if (side === 91) {
-                side = 101;
-                array = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0];
-            }
+            // if (side === 91) {
+            //     side = 101;
+            //     array = [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0];
+            // }
 
             if (side >= 100 && side <= 110) {
 
