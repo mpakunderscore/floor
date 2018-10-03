@@ -60,7 +60,7 @@ io.on('connection', (socket) => {
 
     socket.on('siren', (message) => siren(socket, message));
 
-    socket.on('sirenx', (message) => siren(socket, message));
+    socket.on('sirenx', (message) => sirenStop(socket, message));
 
     socket.on('win', (message) => win(socket, message));
 
