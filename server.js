@@ -59,6 +59,8 @@ io.on('connection', (socket) => {
 
     socket.on('win', (message) => win(socket, message));
 
+    socket.on('white', (message) => white(socket, message));
+
     socket.on('start', (message) => start(socket, message));
 
     socket.on('stop', (message) => stop(socket, message));
@@ -255,6 +257,10 @@ exports.winPress = function (message) {
 
     setTimeout(function(){tcpSocket1.push('E');}, 10000);
 };
+
+function white(socket, message) {
+    tcpSocket1.push('E');
+}
 
 function start(socket, message) {
     started = true;

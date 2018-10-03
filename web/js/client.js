@@ -33,6 +33,10 @@ function stop() {
     socket.emit('stop', '');
 }
 
+function white() {
+    socket.emit('white', '');
+}
+
 function pressSend(i, j, pressed) {
     socket.emit('press', i + '|' + j + '|' + pressed);
 }
