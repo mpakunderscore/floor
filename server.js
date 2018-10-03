@@ -2,19 +2,22 @@
 let state = {}; //{101: [0-11], 102 ...}
 let statePress = []; //[i][j]
 
+const Store = require('data-store');
+const store = new Store({ path: 'config.json' });
+
 function loadStatePress() {
 
-    for (let i = 0; i < 8; i++) {
+    if (store.get('state') === undefined) {
 
-        statePress[i] = [];
-
-        for (let j = 0; j < 8; j++) {
-
-            statePress[i][j] = 0;
+        for (let i = 0; i < 8; i++) {
+            statePress[i] = [];
+            for (let j = 0; j < 8; j++) {
+                statePress[i][j] = 0;
+            }
         }
     }
 
-    statePress[1][0] = 1;
+    statePress = store.get('state');
 }
 
 loadStatePress();
@@ -279,6 +282,8 @@ function press(socket, message) {
     console.log(data);
 
     statePress[data[0]][data[1]] = parseInt(data[2]);
+
+    store.set('state', statePress);
 
     io.sockets.emit('statePress', JSON.stringify(statePress));
 }
