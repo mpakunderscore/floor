@@ -174,6 +174,12 @@ function sirenStop(socket, message) {
     }
 }
 
+let siren1 = false;
+let siren2 = false;
+let siren3 = false;
+let siren4 = false;
+
+
 exports.sirenPress = function (message) {
 
     if (!started)
@@ -181,48 +187,60 @@ exports.sirenPress = function (message) {
 
     switch(message) {
         case 101:
-            if (tcpSocket1.length === 0)
-            tcpSocket1.push('Z');
-            // tcpSocket1.push('Z');
-            // tcpSocket1.push('Z');
-            setTimeout(function(){
-                tcpSocket1.push('X');
-                // tcpSocket1.push('X');
-                // tcpSocket1.push('X');
+            if (!siren1) {
+                siren1 = true;
+                tcpSocket1.push('Z');
+                tcpSocket1.push('Z');
+                tcpSocket1.push('Z');
+                setTimeout(function(){
+                    tcpSocket1.push('X');
+                    tcpSocket1.push('X');
+                    tcpSocket1.push('X');
+                    siren1 = false;
                 }, sirenTime);
+            }
             break;
         case 102:
-            if (tcpSocket2.length === 0)
-            tcpSocket2.push('Z');
-            // tcpSocket2.push('Z');
-            // tcpSocket2.push('Z');
-            setTimeout(function(){
-                tcpSocket2.push('X');
-                // tcpSocket2.push('X');
-                // tcpSocket2.push('X');
-            }, sirenTime);
+            if (!siren2) {
+                siren2 = true;
+                tcpSocket2.push('Z');
+                tcpSocket2.push('Z');
+                tcpSocket2.push('Z');
+                setTimeout(function(){
+                    tcpSocket2.push('X');
+                    tcpSocket2.push('X');
+                    tcpSocket2.push('X');
+                    siren2 = false;
+                }, sirenTime);
+            }
             break;
         case 103:
-            if (tcpSocket3.length === 0)
-            tcpSocket3.push('Z');
-            // tcpSocket3.push('Z');
-            // tcpSocket3.push('Z');
-            setTimeout(function(){
-                tcpSocket3.push('X');
-                // tcpSocket3.push('X');
-                // tcpSocket3.push('X');
-            }, sirenTime);
+            if (!siren3) {
+                siren3 = true;
+                tcpSocket3.push('Z');
+                tcpSocket3.push('Z');
+                tcpSocket3.push('Z');
+                setTimeout(function(){
+                    tcpSocket3.push('X');
+                    tcpSocket3.push('X');
+                    tcpSocket3.push('X');
+                    siren3 = false;
+                }, sirenTime);
+            }
             break;
         case 104:
-            if (tcpSocket4.length === 0)
-            tcpSocket4.push('Z');
-            // tcpSocket4.push('Z');
-            // tcpSocket4.push('Z');
-            setTimeout(function(){
-                tcpSocket4.push('X');
-                // tcpSocket4.push('X');
-                // tcpSocket4.push('X');
-            }, sirenTime);
+            if (!siren4) {
+                siren4 = true;
+                tcpSocket4.push('Z');
+                tcpSocket4.push('Z');
+                tcpSocket4.push('Z');
+                setTimeout(function(){
+                    tcpSocket4.push('X');
+                    tcpSocket4.push('X');
+                    tcpSocket4.push('X');
+                    siren4 = false;
+                }, sirenTime);
+            }
             break;
         default:
             console.log("Siren error from " + message);
