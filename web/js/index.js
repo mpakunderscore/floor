@@ -1,5 +1,8 @@
 // window.$ = window.jQuery = module.exports;
 
+if (localStorage.getItem('password') !== 'geekpower')
+    window.location.replace("/login");
+
 let map = [];
 let state = [];
 

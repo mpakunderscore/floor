@@ -33,6 +33,7 @@ let path = require('path');
 let app = express();
 app.use(express.static(path.join(__dirname, 'web')));
 app.use('/siren', express.static(path.join(__dirname, 'web/siren.html')));
+app.use('/login', express.static(path.join(__dirname, 'web/login.html')));
 
 let server = require('http').Server(app);
 const port = process.env.PORT || 8080;
@@ -82,18 +83,22 @@ let tcpSocket2 = [];
 let tcpSocket3 = [];
 let tcpSocket4 = [];
 
-function up(socket, message) {
+// let Gpio = require('onoff').Gpio;
+// let gpioUp = new Gpio(5, 'out').writeSync(0);
+// let gpioDown = new Gpio(6, 'out').writeSync(0);
 
-    // if (tcpSocket1 !== null) {
-    //     tcpSocket1.write('U');
-    // }
+function up(socket, message) {
+    gpioUp.writeSync(1);
+    setTimeout(function(){
+        gpioUp.writeSync(0);
+    }, 5000);
 }
 
 function down(socket, message) {
-
-    // if (tcpSocket1 !== null) {
-    //     tcpSocket1.write('D');
-    // }
+    gpioDown.writeSync(1);
+    setTimeout(function(){
+        gpioDown.writeSync(0);
+    }, 5000);
 }
 
 function siren(socket, message) {
