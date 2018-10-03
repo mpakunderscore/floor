@@ -15,6 +15,8 @@ function loadStatePress() {
                 statePress[i][j] = 0;
             }
         }
+
+        store.set('state', statePress);
     }
 
     statePress = store.get('state');
