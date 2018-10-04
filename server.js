@@ -91,14 +91,14 @@ function up(socket, message) {
     gpioUp.writeSync(1);
     setTimeout(function(){
         gpioUp.writeSync(0);
-    }, 5000);
+    }, 5100);
 }
 
 function down(socket, message) {
     gpioDown.writeSync(1);
     setTimeout(function(){
         gpioDown.writeSync(0);
-    }, 5000);
+    }, 3600);
 }
 
 function siren(socket, message) {
