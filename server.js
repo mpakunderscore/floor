@@ -84,8 +84,10 @@ let tcpSocket3 = [];
 let tcpSocket4 = [];
 
 let Gpio = require('onoff').Gpio;
-let gpioUp = new Gpio(5, 'out').writeSync(0);
-let gpioDown = new Gpio(6, 'out').writeSync(0);
+let gpioUp = new Gpio(5, 'out');
+gpioUp.writeSync(0);
+let gpioDown = new Gpio(6, 'out');
+gpioDown.writeSync(0);
 
 function up(socket, message) {
     gpioUp.writeSync(1);
