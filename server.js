@@ -264,6 +264,8 @@ function win(socket, message) {
     tcpSocket1.push(message);
     tcpSocket1.push(message);
 
+    // up(null, null);
+
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 
     stop(null, null);
@@ -280,6 +282,8 @@ exports.winPress = function (message) {
     tcpSocket1.push(message);
     tcpSocket1.push(message);
     tcpSocket1.push(message);
+
+    up(null, null);
 
     // на сообщения 1-4 зажигаю на 101й девайс зажигаю цветом команды 1-4 подсветку
 
